@@ -1,6 +1,6 @@
 void XuatMenu();
 int ChonMenu(int soMenu);
-void XuLyMenu(int chon, MaTran a, unsigned int& n);
+void XuLyMenu(int chon, MaTran a, MaTran b, unsigned int& n, unsigned int& m);
 void ChayChuongTrinh();
 
 
@@ -9,15 +9,13 @@ void XuatMenu()
 	cout << "\n0. thoat khoi chuong trinh";
 	cout << "\n1. nhap ma tran vuong cap n ";
 	cout << "\n2. Xuat ma tran";
-	cout << "\n3. tinh tong cac phan tu cua ma tran";
-	cout << "\n4. tich cua cac phan tu chia het cho 3";
-	cout << "\n5. hoan vi hai cot cua ma tran va in";
-	cout << "\n6. hoan vi hai dong cua ma tran va in";
-	cout << "\n7. xuat cac gia tri cua duong cheo song song voi duong cheo chinh";
-	cout << "\n8. xuat cac gia tri cua duong cheo song song voi duong cheo phu";
-	cout << "\n9. tinh tong cac phan tu nam ben trai duong cheo phu";
-	cout << "\n10. xuat cac phan tu thuoc duong cheo chinh va duong cheo phu";
-
+	cout << "\n3. tao ma tran ngau nhien";
+	cout << "\n4. tinh hang cua ma tran ";
+	cout << "\n5. tim ma tran chuyen vi";
+	cout << "\n6. cong hai ma tran cung cap ";
+	cout << "\n7. tru hai ma tran cung cap";
+	cout << "\n8. nhan ma tran voi 1 so";
+	cout << "\n9. nhan hai ma tran voi nhau";
 }
 
 int ChonMenu(int soMenu)
@@ -39,9 +37,10 @@ int ChonMenu(int soMenu)
 
 
 
-void XuLyMenu(int chon, MaTran a, unsigned int& n)
+void XuLyMenu(int chon, MaTran a, MaTran b, unsigned int& n, unsigned int& m)
 {
-
+	int maxVal, minVal;
+	int soNhan;
 
 
 	switch (chon)
@@ -63,55 +62,63 @@ void XuLyMenu(int chon, MaTran a, unsigned int& n)
 		cout << endl;
 		break;
 	case 3:
-		cout << "ma tran ban vua nhap la \n";
-		xuatMaTran(a, n);
-		cout << endl << "tong cac phan tu cua ma tran la: " << tinhTongCacPT(a, n) << endl;
+		cout << "tao ma tran ngau nhien\n";
+		cout << "nhap so be nhat trong mang: ";
+		cin >> minVal;
+		cout << "nhap so lon nhat trong mang: ";
+		cin >> maxVal;
+		cout << "nhap cap cua ma tran: ";
+		cin >> m;
+		taoMaTranNgauNhien(b, m, maxVal, minVal);
+		cout << "ma tran ban vua tao ngau nhien la: \n";
+		xuatMaTran(b,m);
 		break;
 	case 4:
-		cout << "ma tran ban vua nhap la \n";
+		cout << "ma tran truoc khi hoan vi la:\n";
 		xuatMaTran(a, n);
-		cout << endl << "tich cac phan tu chia het cho 3 la: " << tichCuaCacPTChiaHetCho3(a, n) << endl;
-		break;
+		cout << endl;
+		chuyenViMaTran( a, n);
+		cout << "ma tran sau khi hoan vi la\n";
+		xuatMaTran(a, n); 
+	break;
 	case 5:
-		cout << "ma tran ban vua nhap la \n";
-		xuatMaTran(a, n);
-		cout << endl << "hoan vi hai cot cua ma tran la: \n";
-		hoanViCot(a, n);
-		xuatMaTran(a, n);
+
+		
 		break;
 	case 6:
-		cout << "ma tran ban vua nhap la \n";
+		cout << "hai ma tran ban vua tao lan luot la: \n";
 		xuatMaTran(a, n);
-		cout << endl << "hoan vi hai hang cua ma tran la: \n";
-		hoanViHang(a, n);
-		xuatMaTran(a, n);
-		break;
+		cout << endl;
+		xuatMaTran(b, m);
+		congHaiMaTranCungCap(a, b, n, m);
+	break;
+
 	case 7:
-		cout << "ma tran ban vua nhap la \n";
+		cout << "hai ma tran ban vua tao lan luot la: \n";
 		xuatMaTran(a, n);
-		cout << endl << "cac gia tri cua cac PT song song voi duong cheo chinh la: \n";
-		xuatCacGiaTriSongSongVoiDCChinh(a, n);
-		xuatMaTran(a, n);
-		break;
+		cout << endl;
+		xuatMaTran(b, m);
+		truHaiMaTranCungCap(a, b, n, m);
+	break;
+
 	case 8:
-		cout << "ma tran ban vua nhap la \n";
+		cout << "hai ma tran ban vua tao lan luot la: \n";
 		xuatMaTran(a, n);
-		cout << endl << "cac gia tri cua cac PT song song voi duong cheo chinh la: \n";
-		xuatCacGiaTriSongSongVoiDCPhu(a, n);
-		xuatMaTran(a, n);
-		break;
+		cout << endl;
+		cout << "nhap so nhan: ";
+		cin >> soNhan;
+		nhanMaTranVoiMotSo(a, n, soNhan);
+	break;
+
 	case 9:
-		cout << "ma tran ban vua nhap la \n";
+		cout << "hai ma tran ban vua tao lan luot la: \n";
 		xuatMaTran(a, n);
-		cout << endl << "tong cac phan tu nam duoi duong cheo phu la: \n" << tinhTongCacPhanTuNamDuoiDCPhu(a, n);
-		break;
-	case 10:
-		cout << "ma tran ban vua nhap la \n";
-		xuatMaTran(a, n);
-		cout << endl << "cac phan tu thuoc duong cheo la\n";
-		
-		xuatCacPTNamTrenDuongCheo( a, n);
-		break;
+		cout << endl;
+		xuatMaTran(b, m);
+		nhanHaiMaTranCungCap(a, b, n, m);
+	break;
+	
+	
 	default:
 		break;
 	}
@@ -122,16 +129,16 @@ void XuLyMenu(int chon, MaTran a, unsigned int& n)
 
 void ChayChuongTrinh()
 {
-	int soMenu = 10;
+	int soMenu = 9;
 	int chon;
-	unsigned int n;
-	MaTran a;
+	unsigned int n, m;
+	MaTran a, b;
 	do
 	{
 		system("cls");
 		chon = ChonMenu(soMenu);
 
-		XuLyMenu(chon, a, n);
+		XuLyMenu(chon, a, b, n, m);
 
 	} while (chon != 0);
 }
